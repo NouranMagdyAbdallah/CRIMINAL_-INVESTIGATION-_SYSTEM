@@ -1,0 +1,38 @@
+#define led D0
+#define buzzer D1
+#define button D5
+
+bool flag = false;
+unsigned long time1=0;
+
+void setup() {
+pinMode (led, OUTPUT);
+pinMode (buzzer ,OUTPUT) ;
+pinMode (button, INPUT);
+time1 = millis();
+}
+void loop() {
+  
+if (millis()-time1 >=4000 &&flag ==false)
+{
+  digitalWrite (buzzer,HIGH);
+  delay (100);
+  time1=millis();
+  flag = true;
+}
+else if(flag==true && millis()-time1 >=4000 )
+{
+  digitalWrite (buzzer,LOW);
+  delay (100);
+  time1=millis();
+  flag = false;
+}
+if (digitalRead(button) == HIGH)
+{
+  digitalWrite(led, HIGH);
+}
+else
+{
+  digitalWrite(led, LOW);
+}
+}
